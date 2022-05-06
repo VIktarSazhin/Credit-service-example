@@ -1,0 +1,15 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: credit-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/andersendb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    show-sql: true
