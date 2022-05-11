@@ -23,7 +23,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @Slf4j
@@ -55,13 +55,12 @@ class LoanServiceImplTest {
         Loan loan = InitDataForTest.createLoanTest();
         LoanInfoDto loanInfoDto = InitDataForTest.createLoanInfoDto();
 
-        when(loanRepository.findById(loan.getId())).thenReturn(Optional.of(loan));
-        when(loanMapper.toLoanInfoDto(loan)).thenReturn(loanInfoDto);
+        lenient().when(loanService.getLoanInfoById(loan.getId())).thenReturn(loanInfoDto);
+        lenient().when(loanMapper.toLoanInfoDto(loan)).thenReturn(loanInfoDto);
 
         LoanInfoDto actualLoanInfoDto = loanService.getLoanInfoById(1L);
 
         assertEquals(loanInfoDto, actualLoanInfoDto);
-
     }
 
     @Test
